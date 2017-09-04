@@ -128,7 +128,7 @@ plugin.manifest = (pth, opts) => {
 		const revisionedFile = relPath(file.base, file.path);
 		const originalFile = path.join(path.dirname(revisionedFile), path.basename(file.revOrigPath)).replace(/\\/g, '/');
 
-		manifest[originalFile.startsWith('/') ? originalFile : '/' + originalFile] = revisionedFile.startsWith('/') ? revisionedFile : '/' + revisionedFile;
+		manifest[originalFile.startsWith('/') ? originalFile : '/' + originalFile] = (originalFile.startsWith('/') ? originalFile : '/' + originalFile) + '?id=' + file.revHash;
 
 		cb();
 	}, function (cb) {
